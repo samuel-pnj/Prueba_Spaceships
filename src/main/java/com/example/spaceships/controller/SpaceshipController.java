@@ -19,7 +19,7 @@ public class SpaceshipController {
     @Autowired
     private SpaceshipService spaceshipService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<Spaceship>> getAllSpaceships(@RequestParam(defaultValue = "0") int page,
                                                             @RequestParam(defaultValue = "10") int size) {
         List<Spaceship> spaceships = spaceshipService.getAllSpaceships(page, size);
@@ -39,7 +39,7 @@ public class SpaceshipController {
         return new ResponseEntity<>(spaceships, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Spaceship> createSpaceship(@RequestBody Spaceship spaceship) {
         Spaceship newSpaceship = spaceshipService.createSpaceship(spaceship);
         return new ResponseEntity<>(newSpaceship, HttpStatus.CREATED);

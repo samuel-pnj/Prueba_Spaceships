@@ -1,17 +1,26 @@
 package com.example.spaceships.model.Spaceship;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
+
+@Entity
 public class Spaceship {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String series;
+    
+    public Spaceship() {
+    }
+    
+    public Spaceship(Long id, String name, String series) {
+        this.id = id;
+        this.name = name;
+        this.series = series;
+    }
     
 	public Long getId() {
 		return id;
@@ -31,4 +40,13 @@ public class Spaceship {
 	public void setSeries(String series) {
 		this.series = series;
 	}
+	
+	 @Override
+	    public String toString() {
+	        return "Spaceship{" +
+	                "id=" + id +
+	                ", name='" + name + '\'' +
+	                ", series='" + series + '\'' +
+	                '}';
+	    }
 }

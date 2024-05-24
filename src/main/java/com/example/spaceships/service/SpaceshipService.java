@@ -52,4 +52,6 @@ public class SpaceshipService {
             throw new RuntimeException("Spaceship not found with id: " + id);
         }
     }
+    
+    
 }

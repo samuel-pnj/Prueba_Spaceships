@@ -10,13 +10,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
+	
+	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-            .requestMatchers("/api/spaceships/**").authenticated()
-            .anyRequest().permitAll()
-            .and()
+            .authorizeHttpRequests((authorizeRequests) ->
+                authorizeRequests
+                    .antMatchers("/", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
+                    .antMatchers("/api/spaceships/**").authenticated()
+                    .anyRequest().authenticated()
+            )
             .httpBasic();
         return http.build();
     }
